@@ -2,6 +2,7 @@
 import React from 'react';
 import { InputForm } from '../../atoms/inputForm'
 import {AddTodo} from '../../organisms/AddTodo'
+import styles from "./styles.module.css";
 
 // TodoTemplate/index.jsx
 export const TodoTemplate = () => {
@@ -16,18 +17,16 @@ export const TodoTemplate = () => {
   };
 
   return (
-    <div>
-      <InputForm
-        inputValue="" // テスト用の初期値
-        placeholder="ここに入力" // テスト用のプレースホルダー
-        handleChangeValue={handleInputChange} // 値が変更されたときのハンドラー
-      />
+    <div className={styles.container}>
+      <h1 className={styles.title}>Todo List</h1>
       {/* AddTodo */}
+      <section className={styles.common}>
       <AddTodo
         addInputValue=""
         onChangeTodo={handleInputChange}
         handleAddTodo={handleAddTodo}
       />
+      </section>
     </div>
   );
 };
