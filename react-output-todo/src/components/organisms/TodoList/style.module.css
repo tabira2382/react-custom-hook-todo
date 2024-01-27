@@ -3,6 +3,9 @@
 }
 
 .todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   margin-bottom: 10px;
   list-style: none;
@@ -24,11 +27,13 @@
   color: #fff;
 }
 
-.far {
+.fa {
   cursor: pointer;
   position: absolute;
   top: 24px;
   right: 10px;
   width: 30px;
+  font-size: 24px;
   color: #ff9900;
 }
+

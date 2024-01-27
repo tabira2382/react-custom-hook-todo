@@ -1,5 +1,5 @@
 // TodoTemplate/index.jsx
-import React from 'react';
+import React, {useState} from 'react';
 import { InputForm } from '../../atoms/inputForm'
 import {AddTodo} from '../../organisms/AddTodo'
 import {TodoList} from '../../organisms/TodoList'
@@ -7,7 +7,19 @@ import styles from "./styles.module.css";
 
 // TodoTemplate/index.jsx
 export const TodoTemplate = () => {
-  const todoItems =  [{ id: 1, title: "Todo1" }, { id: 2, title: "Todo2" }];
+  const[todoItems, setTodoItems] = useState([{ id: 1, title: "Todo1" }, { id: 2, title: "Todo2" }]);
+  // const todoItems =  [{ id: 1, title: "Todo1" }, { id: 2, title: "Todo2" }];
+
+  // 削除ハンドラー関数
+  const handleDeleteTodo = (id => {
+    // 確認ダイアログ
+    const confirmDelete = window.confirm("このTodoを削除してもよろしいですか?")
+    if (confirmDelete) {
+      const newTodoItems = todoItems.filter(item => item.id !== id);
+      setTodoItems(newTodoItems);  
+    }
+  });
+
   // テスト用のハンドラー関数
   const handleInputChange = (e) => {
     console.log(e.target.value); // 入力値をコンソールに表示
@@ -32,7 +44,7 @@ export const TodoTemplate = () => {
       </section>
       {/* TodoList */}
       <section className={styles.common}>
-        <TodoList todoItems={todoItems}/>
+        <TodoList todoItems={todoItems} onDeleteTodo={handleDeleteTodo} />
       </section>
     </div>
   );
