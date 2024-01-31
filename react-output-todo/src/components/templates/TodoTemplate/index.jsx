@@ -5,10 +5,11 @@ import {AddTodo} from '../../organisms/AddTodo'
 import {TodoList} from '../../organisms/TodoList'
 import styles from "./styles.module.css";
 
-// TodoTemplate/index.jsx
 export const TodoTemplate = () => {
   const[todoItems, setTodoItems] = useState([{ id: 1, title: "Todo1" }, { id: 2, title: "Todo2" }]);
-  // const todoItems =  [{ id: 1, title: "Todo1" }, { id: 2, title: "Todo2" }];
+  const [newTodoTitle, setNewTodoTitle] = useState("")
+  const [maxId, setMaxId] = useState(2)
+
 
   // 削除ハンドラー関数
   const handleDeleteTodo = (id => {
@@ -20,14 +21,21 @@ export const TodoTemplate = () => {
     }
   });
 
-  // テスト用のハンドラー関数
-  const handleInputChange = (e) => {
-    console.log(e.target.value); // 入力値をコンソールに表示
-  };
-
-  // テスト用のTodo追加ハンドラー（実際のロジックに置き換える）
+  // Todo追加処理
   const handleAddTodo = () => {
-    console.log("Add Todo");
+    if (newTodoTitle) { // 新しいTodoタイトルが空でない場合
+      const newId = maxId + 1 // 新しいIDを生成
+      const newTodo = { id: newId , title: newTodoTitle }; //新しいTodo項目
+      setTodoItems([...todoItems, newTodo]); //Todoリストに新しい項目を追加
+      setMaxId(newId); // 最大IDを更新
+      setNewTodoTitle("")// 入力値をクリア
+    }
+  };
+  
+
+  // 入力値の変更処理
+  const handleInputChange = (e) => {
+    setNewTodoTitle(e.target.value) // 新しいTodoタイトルを設定
   };
   
 
@@ -36,11 +44,11 @@ export const TodoTemplate = () => {
       <h1 className={styles.title}>Todo List</h1>
       {/* AddTodo */}
       <section className={styles.common}>
-      <AddTodo
-        addInputValue=""
-        onChangeTodo={handleInputChange}
-        handleAddTodo={handleAddTodo}
-      />
+        <AddTodo
+          addInputValue={newTodoTitle}
+          onChangeTodo={handleInputChange}
+          handleAddTodo={handleAddTodo}
+        />
       </section>
       {/* TodoList */}
       <section className={styles.common}>

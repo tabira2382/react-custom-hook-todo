@@ -16,6 +16,14 @@ export const AddTodo = (props) => {
   /* props */
   const { addInputValue, onChangeTodo, handleAddTodo } = props;
 
+    // エンターキー押下時のイベントハンドラ
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        handleAddTodo();
+      }
+    };
+  
+
   return (
     <>
       <h2 className={styles.subTitle}>{"Add Todo"}</h2>
@@ -23,7 +31,7 @@ export const AddTodo = (props) => {
         inputValue={addInputValue}
         placeholder={"New Todo"}
         handleChangeValue={onChangeTodo}
-        hadleKeyDown={handleAddTodo}
+        handleKeyDown={handleKeyDown}
       />
     </>
   );
