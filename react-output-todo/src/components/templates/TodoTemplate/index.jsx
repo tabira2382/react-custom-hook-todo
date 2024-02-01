@@ -9,6 +9,7 @@ export const TodoTemplate = () => {
   const[todoItems, setTodoItems] = useState([{ id: 1, title: "Todo1" }, { id: 2, title: "Todo2" }]);
   const [newTodoTitle, setNewTodoTitle] = useState("")
   const [maxId, setMaxId] = useState(2)
+  const [searchQuery, setSearchQuery] = useState("")
 
 
   // 削除ハンドラー関数
@@ -32,16 +33,25 @@ export const TodoTemplate = () => {
     }
   };
   
-
   // 入力値の変更処理
   const handleInputChange = (e) => {
     setNewTodoTitle(e.target.value) // 新しいTodoタイトルを設定
   };
+
+  // 検索入力の変更処理
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
   
+  // フィルタリング後のTodoリスト
+  const filteredTodoItems = todoItems.filter(item =>
+    item.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+    );
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Todo List</h1>
+      
       {/* AddTodo */}
       <section className={styles.common}>
         <AddTodo
@@ -50,9 +60,19 @@ export const TodoTemplate = () => {
           handleAddTodo={handleAddTodo}
         />
       </section>
+      
+      {/* 検索フォーム */}
+      <section className={styles.common}>
+        <InputForm
+        inputValue={searchQuery}
+        placeholder={"Search Todo"}
+        handleChangeValue={handleSearchChange}
+        />
+      </section>
+
       {/* TodoList */}
       <section className={styles.common}>
-        <TodoList todoItems={todoItems} onDeleteTodo={handleDeleteTodo} />
+        <TodoList todoItems={filteredTodoItems} onDeleteTodo={handleDeleteTodo} />
       </section>
     </div>
   );
