@@ -1,8 +1,42 @@
-# React + Vite
+# React Output First
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Reactアウトプットサンプル**
 
-Currently, two official plugins are available:
+useStateとPropsのみを使用した状態管理で実装されたTodoリストの基本機能。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 目次
+- [環境構築](#環境構築)
+- [アプリケーションの仕様](#アプリケーションの仕様)
+
+## 環境構築
+
+### 1-1. ライブラリのインストール
+```
+npm install
+
+または
+
+yarn
+```
+### 1-2. アプリケーションの実行
+```
+npm run dev
+
+または
+
+yarn dev
+```
+## ２.アプリケーションの仕様
+### 2-1.仕様
+- Todoリスト
+  - Todo一覧表示
+  - Todo検索処理(前方一致)
+  - Todo新規登録処理
+  - Todo削除処理
+
+### 構成技術
+- react: 18.2.0
+- react-dom: 18.2.0
+- vite: ^5.0.8
+- @fortawesome/react-fontawesome: 0.2.0
+- @fortawesome/free-solid-svg-icons: 6.5.1
