@@ -1,8 +1,9 @@
-# React Output First
+# React-Custom-Hook-Todo
 
 **Reactアウトプットサンプル**
 
-useStateとPropsのみを使用した状態管理で実装されたTodoリストの基本機能。
+以下アプリケーションをコンポーネントに定義した状態とロジックをカスタムフック化したアプリケーション
+https://github.com/tabira2382/react-custom-hook-todo
 
 ## 目次
 - [環境構築](#環境構築)
